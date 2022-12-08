@@ -1,0 +1,27 @@
+{
+  "name": "asme-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vermastra/ASME-backend.git"
+  },
+  "author": "Aditya Verma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vermastra/ASME-backend/issues"
+  },
+  "homepage": "https://github.com/vermastra/ASME-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cloudinary": "^1.32.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "mongoose": "^6.7.1"
+  }
+}
