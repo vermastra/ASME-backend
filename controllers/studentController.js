@@ -105,7 +105,7 @@ exports.getStudentDetails = async (req, res, next) => {
 //get All Students
 exports.getAllStudents = async (req, res) => {
     try {
-        let student = await Student.find({ event: req.params.event });
+        let student = await Student.find({ eventId: req.params.id });
         const studentCount = await Student.countDocuments();
         res.status(201).json({
             success: true,

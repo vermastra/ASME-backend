@@ -20,16 +20,16 @@ exports.addAdmin = async (req, res) => {
 
 exports.isAuthenticatedUser = async (req, res, next) => {
     try {
-        const { CSS_Website } = req.cookies;
+        const { ASME_Website } = req.cookies;
         
-        if (!CSS_Website) {
+        if (!ASME_Website) {
             return res.status(401).json({
                 success: false,
                 message: "Please login to access this Resource",
             })
         }
         
-        const decodedData = jwt.verify(CSS_Website, process.env.JWT_SECRET);
+        const decodedData = jwt.verify(ASME_Website, process.env.JWT_SECRET);
         req.user = await Admin.findById(decodedData.id);
         next();
 
@@ -43,7 +43,6 @@ exports.isAuthenticatedUser = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
-
         //checkng if user has entered both email and password
         if (!email || !password) {
             return res.status(500).json({
@@ -53,6 +52,12 @@ exports.login = async (req, res, next) => {
         }
 
         const admin = await Admin.findOne({ role: "admin" }).select("+password");
+        if (!admin) {
+            return res.status(500).json({
+                success: false,
+                message: "Admin doesn't exist"
+            })
+        }
         if (admin.email !== email || admin.password !== password) {
             return res.status(401).json({
                 success: false,
@@ -70,7 +75,7 @@ exports.login = async (req, res, next) => {
 //logout user
 exports.logout = async (req, res, next) => {
     try {
-        res.cookie("CSS_Website", null, {
+        res.cookie("ASME_Website", null, {
             expires: new Date(Date.now()),
             httpOnly: true,
         });
