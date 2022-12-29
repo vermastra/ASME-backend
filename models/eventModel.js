@@ -13,6 +13,10 @@ const eventSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    day: {
+        type: Number,
+        required: true,
+    },
     endDate: {
         type: Date,
         required: true
